@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES6", // Código de salida compatible
+        "module": "ES6", // Usa ES modules
+        "moduleResolution": "node",
+        "declaration": true, // Genera archivos .d.ts para tipado
+        "declarationMap": true, // Mapas para declaraciones
+        "outDir": "dist", // Carpeta de salida
+        "strict": true, // Activa todas las comprobaciones estrictas
+        "esModuleInterop": true, // Importaciones de CommonJS
+        "skipLibCheck": true, // No verifica tipos en node_modules
+        "forceConsistentCasingInFileNames": true, // Nombres de archivos consistentes
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "@constants/*": ["src/constants/index.ts"]
+        }
+    },
+    "include": ["src/**/*"], // Incluye estas carpetas
+    "exclude": ["node_modules", "dist"] // Excluye estas carpetas
+}
