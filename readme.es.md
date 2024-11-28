@@ -1,6 +1,7 @@
 # styled-proper
+[English version](README.md)
 
-`styled-proper` es una biblioteca que permite agregar estilos dinámicos a componentes mediante props, ofreciendo soporte para media queries, manejo de pseudo-clases, pseudo-elementos, y la posibilidad de extender componentes utilizando `styled-components`.
+`styled-proper` es una biblioteca construida sobre `styled-components` que permite agregar estilos dinámicos a componentes mediante props. Ofrece soporte para media queries, manejo de pseudo-clases, pseudo-elementos y brinda la flexibilidad de extender componentes aprovechando las características robustas de `styled-components`.
 
 ## Instalación
 
@@ -131,7 +132,7 @@ styled-proper permite agregar estilos responsivos utilizando media queries de fo
 
 A continuación, se muestra un ejemplo donde se utilizan los alias @sm y @md para ajustar el tamaño de fuente según el ancho de la pantalla:
 
-```html
+```jsx
 <Text.P fs="14px|@sm=18px|@md=22px">Hola</Text.P>
 ```
 
@@ -151,9 +152,6 @@ A continuación, se muestra un ejemplo donde se utilizan los alias @sm y @md par
 
 ## Soporte para Pseudo-clases
 
-<!-- También puedes manejar pseudo-clases como `hover`, `focus`, `nth-child`, etc., su forma de uso es similar a la de css, se antepone con `:` y luego se escribe el nombre de la pseudo-clase, luego se escribe el valor que se quiere aplicar, separado por `=`.
-Cabe mencionar que las pseudo-clases para su uso se deben usar en convención camelCase, por ejemplo `hover`, `focus`, `active`, `lastChild` `nthChild`, etc. -->
-
 Con `styled-proper`, puedes manejar pseudo-clases como `hover`, `focus`, `nth-child`, `active`, entre otras. Su sintaxis es intuitiva y similar a CSS: se antepone un `:` al nombre de la pseudo-clase, seguido del valor deseado, separado por un `=`.
 
 ### Nota importante:
@@ -168,8 +166,10 @@ Para usar pseudo-clases, el nombre debe estar en formato camelCase. Ejemplos:
 
 ### Ejemplo con pseudo-clase `hover`:
 
-```html
-<button bg="black" color="white|hover:green">click me</button>
+```jsx
+<Button bg="black" color="white|hover:green">
+    click me
+</Button>
 ```
 
 #### Descripción:
@@ -179,8 +179,10 @@ Para usar pseudo-clases, el nombre debe estar en formato camelCase. Ejemplos:
 
 ### Ejemplo con pseudo-clase `active`:
 
-```html
-<button bg="black" color="white" border="1px solid white|active:green">click me</button>
+```jsx
+<Button bg="black" color="white" border="1px solid white|active:green">
+    click me
+</Button>
 ```
 
 #### Descripción:
@@ -250,26 +252,34 @@ En `styled-proper`, puedes usar pseudo-clases como props para agregar estilos di
 
 Puedes agregar pseudo-clases directamente en las props utilizando corchetes `[ ]` para agrupar estilos:
 
-```html
-<button bg="black" color="white" hover="[bg=white;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover="[bg=white;color=black]">
+    click me
+</Button>
 ```
 
 **Agregando pseudo-clases dentro de la misma prop:**
 
-```html
-<button bg="black" color="white" hover=":active=[bg=white;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover=":active=[bg=white;color=black]">
+    click me
+</Button>
 ```
 
 **Agregando media queries dentro de la misma prop:**
 
-```html
-<button bg="black" color="white" hover="[bg=red;color=white]|@sm=[bg=blue;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover="[bg=red;color=white]|@sm=[bg=blue;color=black]">
+    click me
+</Button>
 ```
 
 **Agregando pseudo-clases y media queries dentro de la misma prop:**
 
-```html
-<button bg="black" color="white" hover=":active=[bg=red;color=white]|:active@sm=[bg=blue;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover=":active=[bg=red;color=white]|:active@sm=[bg=blue;color=black]">
+    click me
+</Button>
 ```
 
 si la pseudo-clase tiene parámetros, se debe agregar el parámetros se define mediante un array, donde el primer elemento es el parámetro y el segundo elemento es el valor, por ejemplo:
@@ -319,20 +329,24 @@ También puedes manejar pseudo-elementos como `before`, `after`, `first-letter`,
 
 Ejemplo con pseudo-elemento `first-letter`:
 
-```html
+```jsx
 <Text.P color="black|::firstLetter=red">Hola</Text.P>
 ```
 
 Ejemplo con pseudo-elemento `before`:
 
-```html
-<Text.P position="relative|::before=absolute" content="::before=hi" top="::before=0" left="::before=0">Hola</Text.P>
+```jsx
+<Text.P position="relative|::before=absolute" content="::before=hi" top="::before=0" left="::before=0">
+    Hola
+</Text.P>
 ```
 
 Ejemplo con pseudo-elemento usando media queries:
 
-```html
-<Text.P position="relative|::before=absolute" content="@md::before=hi" top="@md::before=0" left="@md::before=0">Hola</Text.P>
+```jsx
+<Text.P position="relative|::before=absolute" content="@md::before=hi" top="@md::before=0" left="@md::before=0">
+    Hola
+</Text.P>
 ```
 
 **lista de pseudo-elementos soportados:**
@@ -362,22 +376,142 @@ Por ejemplo:
 
 **Agregando media queries dentro de la misma prop:**
 
-```html
-<button bg="black" color="white" position="relative" after="@sm=[position=absolute;content=hi;bg=red;right=0;left=0;top=100%]">click me</button>
+```jsx
+<Button bg="black" color="white" position="relative" after="@sm=[position=absolute;content=hi;bg=red;right=0;left=0;top=100%]">
+    click me
+</Button>
 ```
 
 **Lista de pseudo-elementos mediante props soportadas:**
 
-| **Pseudo-elemento original** | **Formato de la uso** |
-| ---------------------------- | --------------------- |
-| `::before`                   | `before`              |
-| `::after`                    | `after`               |
-| `::first-letter`             | `firstLetter`         |
-| `::first-line`               | `firstLine`           |
-| `::selection`                | `selection`           |
-| `::marker`                   | `marker`              |
-| `::placeholder`              | `placeholder`         |
-| `::backdrop`                 | `backdrop`            |
+| **Pseudo-elemento original** | **Formato de uso** |
+| ---------------------------- | ------------------ |
+| `::before`                   | `before`           |
+| `::after`                    | `after`            |
+| `::first-letter`             | `firstLetter`      |
+| `::first-line`               | `firstLine`        |
+| `::selection`                | `selection`        |
+| `::marker`                   | `marker`           |
+| `::placeholder`              | `placeholder`      |
+| `::backdrop`                 | `backdrop`         |
+
+## Soporte para Combinadores
+
+`styled-proper` soporta el uso de combinadores css como `>`, `+`, `~`, ` `. Para su uso se debe anteponer el símbolo `&` seguido del combinador correspondiente y luego el elemento al que se aplica el estilo, muy similar a CSS.
+
+Ejemplo usando el combinador de hijo directo `>`
+
+```jsx
+<Box.Div color="&>div=red">
+    <div>1</div>
+    <section>
+        <div>2</div>
+    </section>
+    <div>3</div>
+</Box.Div>
+```
+
+Ejemplo usando el combinador hermano adyacente `+`
+
+```jsx
+<div>
+    <Box.Div color="&+div=red">1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+Ejemplo usando el combinador de hermano general `~`
+
+```jsx
+<div>
+    <Box.Div color="&~div=red">1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+```
+
+Ejemplo usando el combinador de descendientes &nbsp; ` `
+
+```jsx
+<Box.Div color="& p=red">
+    <div>1</div>
+    <div>
+        <p>2</p>
+    </div>
+    <div>3</div>
+</Box.Div>
+```
+
+**Lista de combinadores soportados:**
+
+| **Combinador** | **Descripción**                                                  |
+| -------------- | ---------------------------------------------------------------- |
+| `&>`           | Selecciona los hijos directos del elemento actual.               |
+| `&~`           | Selecciona los elementos hermanos generales del elemento actual. |
+| `&+`           | Selecciona el hermano inmediato del elemento actual.             |
+| `& `           | Selecciona los descendientes del elemento actual.                |
+
+## uso de combinadores como prop
+
+El uso de combinadores mediante prop funciona recibiendo como parámetro un array, donde el primer elemento es el combinador y el segundo los estilos:
+
+Ejemplo usando el combinador de hijo directo `>` con la prop `directChild`:
+
+```jsx
+<div>
+    <Box.Div directChild={['div', '[color=red]']}>
+        <div>1</div>
+        <section>
+            <div>2</div>
+        </section>
+        <div>3</div>
+    </Box.Div>
+</div>
+```
+
+Ejemplo usando el combinador hermano adyacente `+` con la prop `adjacentSibling`:
+
+```jsx
+<div>
+    <Box.Div adjacentSibling={['div', '[color=red]']}>1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+Ejemplo usando el combinador de hermano general `~` con la prop `generalSibling`:
+
+```jsx
+<div>
+    <Box.Div generalSibling={['div', '[color=red]']}>1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+```
+
+Ejemplo usando el combinador de descendientes ` ` con la prop `descendant`:
+
+```jsx
+<Box.Div descendant={['p', '[color=red]']}>
+    <div>1</div>
+    <div>
+        <p>2</p>
+    </div>
+    <div>3</div>
+</Box.Div>
+```
+
+| **Prop Name**         | **Syntax Explanation**                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **`descendant`**      | `descendant={['p', '[color=red]']}`: Targets all `<p>` elements nested within the current element.                 |
+| **`directChild`**     | `directChild={['div', '[color=blue]']}`: Targets all direct `<div>` children of the current element.               |
+| **`adjacentSibling`** | `adjacentSibling={['span', '[color=green]']}`: Targets the next immediate `<span>` sibling of the current element. |
+| **`generalSibling`**  | `generalSibling={['h1', '[color=yellow]']}`: Targets all subsequent `<h1>` siblings of the current element.        |
 
 # API Reference
 
@@ -1586,6 +1720,14 @@ Por ejemplo:
 | `info-700`       | <span style="display:block;width:100px; height:20px; background-color:#003168; border-radius: 5px"></span> |
 | `info-800`       | <span style="display:block;width:100px; height:20px; background-color:#001e40; border-radius: 5px"></span> |
 | `info-900`       | <span style="display:block;width:100px; height:20px; background-color:#000b20; border-radius: 5px"></span> |
+
+## Web Site
+
+El sitio web para este proyecto aún está en construcción. ¡Pronto estará disponible!
+
+## Issues
+
+Si encuentras algún problema, falta alguna propiedad o funcionalidad, o tienes alguna sugerencia, por favor abre un issue en el repositorio. ¡Tu aporte es muy valioso y nos ayudará a mejorar el proyecto!
 
 ## Contribuciones
 

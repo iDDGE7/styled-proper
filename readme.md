@@ -1,18 +1,19 @@
 # styled-proper
+[versión en español](README.es.md)
 
-`styled-proper` es una biblioteca que permite agregar estilos dinámicos a componentes mediante props, ofreciendo soporte para media queries, manejo de pseudo-clases, pseudo-elementos, y la posibilidad de extender componentes utilizando`styled-components`.
+`styled-proper` is a library that uses `styled-components` internally to enable adding dynamic styles to components via props. It supports media queries, pseudo-classes, pseudo-elements, and provides the flexibility to extend components while leveraging the powerful features of `styled-components`.
 
-## Instalación
+## Installation
 
-Instala la biblioteca a través de npm ejecutando el siguiente comando:
+Install the library via npm by running the following command:
 
 ```bash
 npm install styled-proper
 ```
 
-## Uso básico
+## Basic Usage
 
-`styled-proper` permite crear componentes estilizados utilizando props dinámicas. Aquí tienes un ejemplo simple:
+`styled-proper` allows you to create styled components using dynamic props. Here's a simple example:
 
 ```jsx
 import { Button } from 'styled-proper';
@@ -28,20 +29,20 @@ function Component() {
 export default Component;
 ```
 
-En este ejemplo, se pueden definir multiples estilos en una sola prop, dependiendo si se quiere agregar pseudo-clases o media queries, solo necesitas separar los valores con una barra vertical `|`.
+In this example, you can define multiple styles in a single prop. Whether you want to add pseudo-classes or media queries, you only need to separate the values using a vertical bar `|`.
 
-### Explicación de los estilos
+### Style Breakdown
 
--   `bg="white|:hover=black"`: Define un background blanco cuando y fondo negro cuando se hace hover.
--   `color="black|:hover=white"`: Define un color negro y blanco cuando se hace hover.
--   `fs="14px|@sm=18px|@md=22px"`: Establece el tamaño de fuente en 14px de forma predeterminada, ajustándolo a 18px en pantallas pequeñas `@sm` y a 22px en pantallas medianas `@md`.
+-   `bg="white|:hover=black"`: Sets a white background by default and changes to black on hover.
+-   `color="black|:hover=white"`: Sets a black text color by default and changes to white on hover.
+-   `fs="14px|@sm=18px|@md=22px"`: Sets the font size to 14px by default, adjusts to 18px on small screens `@sm`, and 22px on medium screens `@md`.
 
-## Formas de implementación
+## Implementation Options
 
-`styled-proper` ofrece varias formas de importar y usar componentes estilizados, proporcionando flexibilidad según tus necesidades.
+`styled-proper` offers multiple ways to import and use styled components, providing flexibility to suit your needs.
 
--   **Importando los componentes de styled-proper:**
-    Puedes importar directamente los componentes estilizados que necesites de styled-proper. Esto es útil para mantener el código limpio y modular.
+-   **Importing Components from styled-proper:**
+    You can directly import the styled components you need from `styled-proper`. This approach is useful for keeping your code clean and modular.
 
 ```jsx
 import { Header, Nav, Main, Footer, ..., Button } from 'styled-proper';
@@ -59,8 +60,8 @@ function Component() {
 }
 ```
 
--   **Importando grupos de componentes de styled-proper:**
-    Si prefieres organizar los componentes en categorías o grupos, puedes importar secciones completas como `Box`, `Text`, `Media`, etc. Esto ayuda a manejar grandes conjuntos de componentes.
+-   **Importing Groups of Components:**
+    If you prefer to organize components into categories or groups, you can import entire sections such as `Box`, `Text`, `Media`, etc. This approach is helpful for managing large sets of components.
 
 ```jsx
 import { Box, Text, Media, FormElement, TableElement, MetaElement, Misc } from 'styled-proper';
@@ -80,8 +81,8 @@ function Component() {
 }
 ```
 
--   **Creando un componente con la función `Proper`:**
-    Puedes usar la función Proper para crear componentes personalizados y ajustarlos según tus necesidades. Esto es especialmente útil si necesitas un control total sobre los nombres y configuraciones de los componentes.
+-   **Creating Custom Components with the `Proper` Function:**
+    You can use the Proper function to create custom components and tailor them to your needs. This is especially useful if you need full control over component names and configurations.
 
 ```jsx
 import Proper from 'styled-proper';
@@ -106,9 +107,9 @@ function Component() {
 }
 ```
 
--   **Extendiendo componentes creados con `styled-components`:**
+-   **Extending Components Created with `styled-components`:**
 
-    Puedes extender componentes creados con `styled-components` y seguir utilizando el sistema de props dinámicos.
+    You can extend components created with `styled-components` while still using the dynamic prop system provided by `styled-proper`.
 
 ```jsx
 import styled from 'styled-components';
@@ -123,23 +124,23 @@ const ExtendedButton = Proper(ButtonWithStyledComponents);
 <ExtendedButton p="1rem">Click me!</ExtendedButton>;
 ```
 
-## Soporte para media queries
+## Media Query Support
 
-styled-proper permite agregar estilos responsivos utilizando media queries de forma sencilla. Para definirlos, simplemente antepone el símbolo @ al alias de la media query deseada.
+`styled-proper` makes it easy to add responsive styles using media queries. To define them, simply prepend the @ symbol to the alias of the desired media query.
 
-**_Ejemplo de media queries:_**
+**Media Query Example:**
 
-A continuación, se muestra un ejemplo donde se utilizan los alias @sm y @md para ajustar el tamaño de fuente según el ancho de la pantalla:
+Below is an example where the aliases `@sm` and `@md` are used to adjust the font size based on the screen width:
 
-```html
+```jsx
 <Text.P fs="14px|@sm=18px|@md=22px">Hola</Text.P>
 ```
 
--   `14px`: Tamaño de fuente por defecto.
--   `@sm=18px`: Cambia el tamaño de fuente a 18px cuando el ancho de la pantalla es mayor o igual a 640px.
--   `@md=22px`: Cambia el tamaño de fuente a 22px cuando el ancho de la pantalla es mayor o igual a 768px.
+-   `14px`: Default font size.
+-   `@sm=18px`: Changes the font size to 18px when the screen width is greater than or equal to 640px.
+-   `@md=22px`: Changes the font size to 22px when the screen width is greater than or equal to 768px.
 
-**lista de media queries soportadas:**
+**Supported Media Queries:**
 
 | **Alias** | **Media Query (CSS)**        |
 | --------- | ---------------------------- |
@@ -149,16 +150,13 @@ A continuación, se muestra un ejemplo donde se utilizan los alias @sm y @md par
 | `@xl`     | `@media (min-width: 1280px)` |
 | `@2xl`    | `@media (min-width: 1536px)` |
 
-## Soporte para Pseudo-clases
+## Pseudo-Class Support
 
-<!-- También puedes manejar pseudo-clases como `hover`, `focus`, `nth-child`, etc., su forma de uso es similar a la de css, se antepone con `:` y luego se escribe el nombre de la pseudo-clase, luego se escribe el valor que se quiere aplicar, separado por `=`.
-Cabe mencionar que las pseudo-clases para su uso se deben usar en convención camelCase, por ejemplo `hover`, `focus`, `active`, `lastChild` `nthChild`, etc. -->
+With `styled-proper`, you can handle pseudo-classes like `hover`, `focus`, `nth-child`, `active`, and more. The syntax is intuitive and similar to CSS: prepend a `:` to the pseudo-class name, followed by the desired value separated by `=`.
 
-Con `styled-proper`, puedes manejar pseudo-clases como `hover`, `focus`, `nth-child`, `active`, entre otras. Su sintaxis es intuitiva y similar a CSS: se antepone un `:` al nombre de la pseudo-clase, seguido del valor deseado, separado por un `=`.
+### Important Note:
 
-### Nota importante:
-
-Para usar pseudo-clases, el nombre debe estar en formato camelCase. Ejemplos:
+Pseudo-class names must be in camelCase format. Examples include:
 
 -   `hover`
 -   `focus`
@@ -166,29 +164,33 @@ Para usar pseudo-clases, el nombre debe estar en formato camelCase. Ejemplos:
 -   `nthChild`
 -   `lastChild`
 
-### Ejemplo con pseudo-clase `hover`:
+### Example with `hover` Pseudo-Class:
 
-```html
-<button bg="black" color="white|hover:green">click me</button>
+```jsx
+<Button bg="black" color="white|hover:green">
+    click me
+</Button>
 ```
 
-#### Descripción:
+#### Description:
 
 -   `bg="black"`: Fondo negro por defecto.
 -   `color="white|:hover=green"`: El color del texto cambia a verde cuando el botón está en estado hover.
 
-### Ejemplo con pseudo-clase `active`:
+### Example with `active` Pseudo-Class:
 
-```html
-<button bg="black" color="white" border="1px solid white|active:green">click me</button>
+```jsx
+<Button bg="black" color="white" border="1px solid white|active:green">
+    click me
+</Button>
 ```
 
-#### Descripción:
+#### Description:
 
--   `border="1px solid white"`: Borde blanco por defecto.
--   `border="|:active=green"`: Cambia el borde a verde cuando el botón está en estado active.
+-   `border="1px solid white"`: Default border is white.
+-   `border="|:active=green"`: Border changes to green when the button is active.
 
-### Ejemplo con pseudo-clase `nth-child`:
+### Example with `nth-child` Pseudo-Class:
 
 ```jsx
 import { Box } from 'styled-proper';
@@ -208,12 +210,12 @@ function Component() {
 export default Component;
 ```
 
-#### Descripción:
+#### Description:
 
--   `bg="white"`: Fondo blanco por defecto.
--   `:nthChild(2n)=black`: Cambia el fondo a negro para todos los elementos que sean múltiplos de 2 (índices pares).
+-   `bg="white"`: Default background is white.
+-   `:nthChild(2n)=black`: Background changes to black for all even-indexed elements.
 
-### **lista de pseudo-clases soportadas:**
+### **List of Supported Pseudo-Classes:**
 
 | **Pseudo-clase original** | **Pseudo-clase de styled-proper** |
 | ------------------------- | --------------------------------- |
@@ -242,37 +244,45 @@ export default Component;
 | `:read-write`             | `:readWrite`                      |
 | `:placeholder-shown`      | `:placeholderShown`               |
 
-## Uso de pseudo-clases como prop
+## Using Pseudo-Classes as Props
 
-En `styled-proper`, puedes usar pseudo-clases como props para agregar estilos dinámicos. Estas se deben escribir en formato camelCase (por ejemplo, `hover`, `focus`, `active`, `lastChild`, `nthChild`, etc.). Además, puedes combinar múltiples estilos dentro de una misma prop utilizando **arrays** y **media queries**.
+In `styled-proper`, you can use pseudo-classes as props to add dynamic styles. These must be written in camelCase (e.g., `hover`, `focus`, `active`, `lastChild`, `nthChild`, etc.). Additionally, you can combine multiple styles within a single prop using **arrays** and **media queries**.
 
-### Ejemplo básico
+### Basic Example
 
-Puedes agregar pseudo-clases directamente en las props utilizando corchetes `[ ]` para agrupar estilos:
+You can directly add pseudo-classes in props by using square brackets `[ ]` to group styles:
 
-```html
-<button bg="black" color="white" hover="[bg=white;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover="[bg=white;color=black]">
+    click me
+</Button>
 ```
 
-**Agregando pseudo-clases dentro de la misma prop:**
+**Combining Pseudo-Classes Within the Same Prop:**
 
-```html
-<button bg="black" color="white" hover=":active=[bg=white;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover=":active=[bg=white;color=black]">
+    click me
+</Button>
 ```
 
-**Agregando media queries dentro de la misma prop:**
+**Adding Media Queries Within the Same Prop:**
 
-```html
-<button bg="black" color="white" hover="[bg=red;color=white]|@sm=[bg=blue;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover="[bg=red;color=white]|@sm=[bg=blue;color=black]">
+    click me
+</Button>
 ```
 
-**Agregando pseudo-clases y media queries dentro de la misma prop:**
+**Combining Pseudo-Classes and Media Queries Within the Same Prop:**
 
-```html
-<button bg="black" color="white" hover=":active=[bg=red;color=white]|:active@sm=[bg=blue;color=black]">click me</button>
+```jsx
+<Button bg="black" color="white" hover=":active=[bg=red;color=white]|:active@sm=[bg=blue;color=black]">
+    click me
+</Button>
 ```
 
-si la pseudo-clase tiene parámetros, se debe agregar el parámetros se define mediante un array, donde el primer elemento es el parámetro y el segundo elemento es el valor, por ejemplo:
+If the pseudo-class requires parameters, they should be passed as an array, where the first element is the parameter, and the second element is the value:
 
 ```jsx
 import { Button } from 'styled-proper';
@@ -284,213 +294,339 @@ function Component() {
 export default Component;
 ```
 
-**Lista de pseudo-clases mediante props soportadas:**
+**List of Supported Pseudo-Classes as Props:**
 
-| **Pseudo-clase original** | **Formato de la lista** |
-| ------------------------- | ----------------------- |
-| `:hover`                  | `hover`                 |
-| `:focus`                  | `focus`                 |
-| `:active`                 | `active`                |
-| `:last-child`             | `lastChild`             |
-| `:first-child`            | `firstChild`            |
-| `:nth-child(param)`       | `nthChild`              |
-| `:nth-of-type(param)`     | `nthOfType`             |
-| `:last-of-type`           | `lastOfType`            |
-| `:first-of-type`          | `firstOfType`           |
-| `:not(param)`             | `not`                   |
-| `:empty`                  | `empty`                 |
-| `:checked`                | `checked`               |
-| `:disabled`               | `disabled`              |
-| `:enabled`                | `enabled`               |
-| `:visited`                | `visited`               |
-| `:link`                   | `link`                  |
-| `:target`                 | `target`                |
-| `:focus-within`           | `focusWithin`           |
-| `:focus-visible`          | `focusVisible`          |
-| `:only-child`             | `onlyChild`             |
-| `:only-of-type`           | `onlyOfType`            |
-| `:read-only`              | `readOnly`              |
-| `:read-write`             | `readWrite`             |
-| `:placeholder-shown`      | `placeholderShown`      |
+| **Pseudo-clase original** | **List Format**    |
+| ------------------------- | ------------------ |
+| `:hover`                  | `hover`            |
+| `:focus`                  | `focus`            |
+| `:active`                 | `active`           |
+| `:last-child`             | `lastChild`        |
+| `:first-child`            | `firstChild`       |
+| `:nth-child(param)`       | `nthChild`         |
+| `:nth-of-type(param)`     | `nthOfType`        |
+| `:last-of-type`           | `lastOfType`       |
+| `:first-of-type`          | `firstOfType`      |
+| `:not(param)`             | `not`              |
+| `:empty`                  | `empty`            |
+| `:checked`                | `checked`          |
+| `:disabled`               | `disabled`         |
+| `:enabled`                | `enabled`          |
+| `:visited`                | `visited`          |
+| `:link`                   | `link`             |
+| `:target`                 | `target`           |
+| `:focus-within`           | `focusWithin`      |
+| `:focus-visible`          | `focusVisible`     |
+| `:only-child`             | `onlyChild`        |
+| `:only-of-type`           | `onlyOfType`       |
+| `:read-only`              | `readOnly`         |
+| `:read-write`             | `readWrite`        |
+| `:placeholder-shown`      | `placeholderShown` |
 
-## Soporte para Pseudo-elementos
+## Support for Pseudo-Elements
 
-También puedes manejar pseudo-elementos como `before`, `after`, `first-letter`, `first-line`, `selection`, `marker`, `placeholder`, `backdrop`, etc., su forma de uso es similar a la de css, se antepone con `::` y luego se escribe el nombre de la pseudo-elemento, luego se escribe el valor que se quiere aplicar, separado por `=`. Cabe mencionar que los pseudo-elementos para su uso se deben usar en convención camelCase, por ejemplo `before`, `after`, `firstLetter`, `firstLine`, `selection`, `marker`, `placeholder`, `backdrop`, etc.
+You can also manage pseudo-elements like `before`, `after`, `first-letter`, `first-line`, `selection`, `marker`, `placeholder`, `backdrop`, and more. Their usage is similar to CSS: prepend `::` followed by the pseudo-element name, then specify the desired value separated by `=`.
 
-Ejemplo con pseudo-elemento `first-letter`:
+Pseudo-elements should be written in camelCase convention, such as `before`, `after`, `firstLetter`, `firstLine`, `selection`, `marker`, `placeholder`, `backdrop`, etc.
 
-```html
+Example with the `first-letter` Pseudo-Element:
+
+```jsx
 <Text.P color="black|::firstLetter=red">Hola</Text.P>
 ```
 
-Ejemplo con pseudo-elemento `before`:
+Example with the `before` Pseudo-Element
 
-```html
-<Text.P position="relative|::before=absolute" content="::before=hi" top="::before=0" left="::before=0">Hola</Text.P>
+```jsx
+<Text.P position="relative|::before=absolute" content="::before=hi" top="::before=0" left="::before=0">
+    Hola
+</Text.P>
 ```
 
-Ejemplo con pseudo-elemento usando media queries:
+Example with Media Queries and Pseudo-Elements
 
-```html
-<Text.P position="relative|::before=absolute" content="@md::before=hi" top="@md::before=0" left="@md::before=0">Hola</Text.P>
+```jsx
+<Text.P position="relative|::before=absolute" content="@md::before=hi" top="@md::before=0" left="@md::before=0">
+    Hola
+</Text.P>
 ```
 
-**lista de pseudo-elementos soportados:**
+**List of Supported Pseudo-Elements:**
 
-| **Pseudo-elemento original** | **Pseudo-elementos de styled-proper** |
-| ---------------------------- | ------------------------------------- |
-| `::before`                   | `::before`                            |
-| `::after`                    | `::after`                             |
-| `::first-letter`             | `::firstLetter`                       |
-| `::first-line`               | `::firstLine`                         |
-| `::selection`                | `::selection`                         |
-| `::marker`                   | `::marker`                            |
-| `::placeholder`              | `::placeholder`                       |
-| `::backdrop`                 | `::backdrop`                          |
+| **Original Pseudo-Element** | **styled-proper Pseudo-Elements** |
+| --------------------------- | --------------------------------- |
+| `::before`                  | `::before`                        |
+| `::after`                   | `::after`                         |
+| `::first-letter`            | `::firstLetter`                   |
+| `::first-line`              | `::firstLine`                     |
+| `::selection`               | `::selection`                     |
+| `::marker`                  | `::marker`                        |
+| `::placeholder`             | `::placeholder`                   |
+| `::backdrop`                | `::backdrop`                      |
 
-## Uso de pseudo-elementos como prop
+## Using Pseudo-Elements as Props
 
-También puedes usar pseudo-elementos como prop.
+You can also use pseudo-elements as props.
 
-Para su uso se deben usar en convención camelCase, por ejemplo `before`, `after`, `firstLetter`, `firstLine`, `selection`, `marker`, `placeholder`, `backdrop`, etc. para aplicar multiples estilos a la misma prop, se debe agregar las props dentro de dos corchetes `[]`, y separar cada par de prop y valor con `;`.
+Pseudo-elements must follow camelCase convention, such as `before`, `after`, `firstLetter`, `firstLine`, `selection`, `marker`, `placeholder`, `backdrop`, etc. To apply multiple styles to the same pseudo-element, wrap the styles in square brackets `[]` and separate each property-value pair with a semicolon `;`.
 
-Por ejemplo:
+Example::
 
 ```xml
 <Button bg="black" color="white" position="relative" after="[position=absolute;content=hi;top=0;left=0]">click me</Button>
 ```
 
-**Agregando media queries dentro de la misma prop:**
+**Adding Media Queries to the Same Prop:**
 
-```html
-<button bg="black" color="white" position="relative" after="@sm=[position=absolute;content=hi;bg=red;right=0;left=0;top=100%]">click me</button>
+```jsx
+<Button bg="black" color="white" position="relative" after="@sm=[position=absolute;content=hi;bg=red;right=0;left=0;top=100%]">
+    click me
+</Button>
 ```
 
-**Lista de pseudo-elementos mediante props soportadas:**
+**List of Supported Pseudo-Elements as Props:**
 
-| **Pseudo-elemento original** | **Formato de la uso** |
-| ---------------------------- | --------------------- |
-| `::before`                   | `before`              |
-| `::after`                    | `after`               |
-| `::first-letter`             | `firstLetter`         |
-| `::first-line`               | `firstLine`           |
-| `::selection`                | `selection`           |
-| `::marker`                   | `marker`              |
-| `::placeholder`              | `placeholder`         |
-| `::backdrop`                 | `backdrop`            |
+| **Original Pseudo-Element** | **Usage Format** |
+| --------------------------- | ---------------- |
+| `::before`                  | `before`         |
+| `::after`                   | `after`          |
+| `::first-letter`            | `firstLetter`    |
+| `::first-line`              | `firstLine`      |
+| `::selection`               | `selection`      |
+| `::marker`                  | `marker`         |
+| `::placeholder`             | `placeholder`    |
+| `::backdrop`                | `backdrop`       |
+
+## Support for Combinators
+
+`styled-proper` supports the use of CSS combinators like `>`, `+`, `~`, and ` `. To use them, prepend the symbol `&` followed by the corresponding combinator and then the element to which the style is applied, very similar to CSS.
+
+Example using the direct child combinator `>`
+
+```jsx
+<Box.Div color="&>div=red">
+    <div>1</div>
+    <section>
+        <div>2</div>
+    </section>
+    <div>3</div>
+</Box.Div>
+```
+
+Example using the adjacent sibling combinator `+`
+
+```jsx
+<div>
+    <Box.Div color="&+div=red">1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+Example using the general sibling combinator `~`
+
+```jsx
+<div>
+    <Box.Div color="&~div=red">1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+```
+
+Example using the descendant combinator  &nbsp; ` `
+
+```jsx
+<Box.Div color="& p=red">
+    <div>1</div>
+    <div>
+        <p>2</p>
+    </div>
+    <div>3</div>
+</Box.Div>
+```
+
+**List of Supported Combinators:**
+
+| **Combinator** | **Description**                                               |
+| -------------- | ------------------------------------------------------------- |
+| `&>`           | Selects direct children of the current element.               |
+| `&~`           | Selects all general sibling elements of the current element.  |
+| `&+`           | Selects the immediate sibling element of the current element. |
+| `& `           | Selects all descendants of the current element.               |
+
+## Using Combinators as Props
+
+The use of combinators through props works by receiving an array as a parameter, where the first element is the combinator and the second is the styles:
+
+Example using the direct child combinator `>` with the `directChild` prop:
+
+```jsx
+<div>
+    <Box.Div directChild={['div', '[color=red]']}>
+        <div>1</div>
+        <section>
+            <div>2</div>
+        </section>
+        <div>3</div>
+    </Box.Div>
+</div>
+```
+
+Example using the adjacent sibling combinator `+` with the `adjacentSibling` prop:
+
+```jsx
+<div>
+    <Box.Div adjacentSibling={['div', '[color=red]']}>1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+Example using the general sibling combinator `~` with the `generalSibling` prop:
+
+```jsx
+<div>
+    <Box.Div generalSibling={['div', '[color=red]']}>1</Box.Div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+```
+
+Example using the descendant combinator ` ` with the `descendant` prop:
+
+```jsx
+<Box.Div descendant={['p', '[color=red]']}>
+    <div>1</div>
+    <div>
+        <p>2</p>
+    </div>
+    <div>3</div>
+</Box.Div>
+```
+
+| **Prop Name**         | **Syntax Explanation**                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **`descendant`**      | `descendant={['p', '[color=red]']}`: Targets all `<p>` elements nested within the current element.                 |
+| **`directChild`**     | `directChild={['div', '[color=blue]']}`: Targets all direct `<div>` children of the current element.               |
+| **`adjacentSibling`** | `adjacentSibling={['span', '[color=green]']}`: Targets the next immediate `<span>` sibling of the current element. |
+| **`generalSibling`**  | `generalSibling={['h1', '[color=yellow]']}`: Targets all subsequent `<h1>` siblings of the current element.        |
 
 # API Reference
 
-### **Lista de Componentes de `styled-proper`**
+### **List of Components in `styled-proper`**
 
-| **Elemento HTML** | **Componente** |
-| ----------------- | -------------- |
-| `<header>`        | `Header`       |
-| `<nav>`           | `Nav`          |
-| `<main>`          | `Main`         |
-| `<section>`       | `Section`      |
-| `<article>`       | `Article`      |
-| `<aside>`         | `Aside`        |
-| `<footer>`        | `Footer`       |
-| `<div>`           | `Div`          |
-| `<span>`          | `Span`         |
-| `<body>`          | `Body`         |
-| `<h1>`            | `H1`           |
-| `<h2>`            | `H2`           |
-| `<h3>`            | `H3`           |
-| `<h4>`            | `H4`           |
-| `<h5>`            | `H5`           |
-| `<h6>`            | `H6`           |
-| `<p>`             | `P`            |
-| `<a>`             | `A`            |
-| `<abbr>`          | `Abbr`         |
-| `<address>`       | `Addr`         |
-| `<b>`             | `B`            |
-| `<bdi>`           | `Bdi`          |
-| `<bdo>`           | `Bdo`          |
-| `<blockquote>`    | `Blockquote`   |
-| `<cite>`          | `Cite`         |
-| `<code>`          | `Code`         |
-| `<del>`           | `Del`          |
-| `<dfn>`           | `Dfn`          |
-| `<em>`            | `Em`           |
-| `<i>`             | `I`            |
-| `<ins>`           | `Ins`          |
-| `<kbd>`           | `Kbd`          |
-| `<mark>`          | `Mark`         |
-| `<s>`             | `S`            |
-| `<samp>`          | `Samp`         |
-| `<small>`         | `Small`        |
-| `<strong>`        | `Strong`       |
-| `<sub>`           | `Sub`          |
-| `<sup>`           | `Sup`          |
-| `<time>`          | `Time`         |
-| `<u>`             | `U`            |
-| `<var>`           | `Var`          |
-| `<big>`           | `Big`          |
-| `<hgroup>`        | `Hgroup`       |
-| `<audio>`         | `Audio`        |
-| `<img>`           | `Img`          |
-| `<video>`         | `Video`        |
-| `<picture>`       | `Picture`      |
-| `<track>`         | `Track`        |
-| `<source>`        | `Source`       |
-| `<embed>`         | `Embed`        |
-| `<iframe>`        | `Iframe`       |
-| `<object>`        | `Obj`          |
-| `<canvas>`        | `Canvas`       |
-| `<form>`          | `Form`         |
-| `<input>`         | `Input`        |
-| `<button>`        | `Button`       |
-| `<textarea>`      | `Textarea`     |
-| `<label>`         | `Label`        |
-| `<fieldset>`      | `Fieldset`     |
-| `<legend>`        | `Legend`       |
-| `<select>`        | `Select`       |
-| `<optgroup>`      | `OptGroup`     |
-| `<option>`        | `Option`       |
-| `<datalist>`      | `Datalist`     |
-| `<output>`        | `Output`       |
-| `<progress>`      | `Progress`     |
-| `<meter>`         | `Meter`        |
-| `<table>`         | `Table`        |
-| `<caption>`       | `Caption`      |
-| `<colgroup>`      | `ColGroup`     |
-| `<col>`           | `Col`          |
-| `<thead>`         | `THead`        |
-| `<tbody>`         | `TBody`        |
-| `<tfoot>`         | `TFoot`        |
-| `<tr>`            | `Tr`           |
-| `<th>`            | `Th`           |
-| `<td>`            | `Td`           |
-| `<head>`          | `Head`         |
-| `<title>`         | `Title`        |
-| `<base>`          | `Base`         |
-| `<link>`          | `Link`         |
-| `<meta>`          | `Meta`         |
-| `<style>`         | `Style`        |
-| `<script>`        | `Script`       |
-| `<html>`          | `Html`         |
-| `<br>`            | `Br`           |
-| `<hr>`            | `Hr`           |
-| `<wbr>`           | `Wbr`          |
-| `<area>`          | `Area`         |
-| `<map>`           | `MapElement`   |
-| `<param>`         | `Param`        |
-| `<menu>`          | `Menu`         |
-| `<menuitem>`      | `MenuItem`     |
-| `<noscript>`      | `Noscript`     |
-| `<dialog>`        | `Dialog`       |
-| `<data>`          | `Data`         |
-| `<details>`       | `Details`      |
-| `<summary>`       | `Summary`      |
-| `<figure>`        | `Figure`       |
-| `<figcaption>`    | `Figcaption`   |
-| `<g>`             | `G`            |
+| **HTML Element** | **Component** |
+| ---------------- | ------------- |
+| `<header>`       | `Header`      |
+| `<nav>`          | `Nav`         |
+| `<main>`         | `Main`        |
+| `<section>`      | `Section`     |
+| `<article>`      | `Article`     |
+| `<aside>`        | `Aside`       |
+| `<footer>`       | `Footer`      |
+| `<div>`          | `Div`         |
+| `<span>`         | `Span`        |
+| `<body>`         | `Body`        |
+| `<h1>`           | `H1`          |
+| `<h2>`           | `H2`          |
+| `<h3>`           | `H3`          |
+| `<h4>`           | `H4`          |
+| `<h5>`           | `H5`          |
+| `<h6>`           | `H6`          |
+| `<p>`            | `P`           |
+| `<a>`            | `A`           |
+| `<abbr>`         | `Abbr`        |
+| `<address>`      | `Addr`        |
+| `<b>`            | `B`           |
+| `<bdi>`          | `Bdi`         |
+| `<bdo>`          | `Bdo`         |
+| `<blockquote>`   | `Blockquote`  |
+| `<cite>`         | `Cite`        |
+| `<code>`         | `Code`        |
+| `<del>`          | `Del`         |
+| `<dfn>`          | `Dfn`         |
+| `<em>`           | `Em`          |
+| `<i>`            | `I`           |
+| `<ins>`          | `Ins`         |
+| `<kbd>`          | `Kbd`         |
+| `<mark>`         | `Mark`        |
+| `<s>`            | `S`           |
+| `<samp>`         | `Samp`        |
+| `<small>`        | `Small`       |
+| `<strong>`       | `Strong`      |
+| `<sub>`          | `Sub`         |
+| `<sup>`          | `Sup`         |
+| `<time>`         | `Time`        |
+| `<u>`            | `U`           |
+| `<var>`          | `Var`         |
+| `<big>`          | `Big`         |
+| `<hgroup>`       | `Hgroup`      |
+| `<audio>`        | `Audio`       |
+| `<img>`          | `Img`         |
+| `<video>`        | `Video`       |
+| `<picture>`      | `Picture`     |
+| `<track>`        | `Track`       |
+| `<source>`       | `Source`      |
+| `<embed>`        | `Embed`       |
+| `<iframe>`       | `Iframe`      |
+| `<object>`       | `Obj`         |
+| `<canvas>`       | `Canvas`      |
+| `<form>`         | `Form`        |
+| `<input>`        | `Input`       |
+| `<button>`       | `Button`      |
+| `<textarea>`     | `Textarea`    |
+| `<label>`        | `Label`       |
+| `<fieldset>`     | `Fieldset`    |
+| `<legend>`       | `Legend`      |
+| `<select>`       | `Select`      |
+| `<optgroup>`     | `OptGroup`    |
+| `<option>`       | `Option`      |
+| `<datalist>`     | `Datalist`    |
+| `<output>`       | `Output`      |
+| `<progress>`     | `Progress`    |
+| `<meter>`        | `Meter`       |
+| `<table>`        | `Table`       |
+| `<caption>`      | `Caption`     |
+| `<colgroup>`     | `ColGroup`    |
+| `<col>`          | `Col`         |
+| `<thead>`        | `THead`       |
+| `<tbody>`        | `TBody`       |
+| `<tfoot>`        | `TFoot`       |
+| `<tr>`           | `Tr`          |
+| `<th>`           | `Th`          |
+| `<td>`           | `Td`          |
+| `<head>`         | `Head`        |
+| `<title>`        | `Title`       |
+| `<base>`         | `Base`        |
+| `<link>`         | `Link`        |
+| `<meta>`         | `Meta`        |
+| `<style>`        | `Style`       |
+| `<script>`       | `Script`      |
+| `<html>`         | `Html`        |
+| `<br>`           | `Br`          |
+| `<hr>`           | `Hr`          |
+| `<wbr>`          | `Wbr`         |
+| `<area>`         | `Area`        |
+| `<map>`          | `MapElement`  |
+| `<param>`        | `Param`       |
+| `<menu>`         | `Menu`        |
+| `<menuitem>`     | `MenuItem`    |
+| `<noscript>`     | `Noscript`    |
+| `<dialog>`       | `Dialog`      |
+| `<data>`         | `Data`        |
+| `<details>`      | `Details`     |
+| `<summary>`      | `Summary`     |
+| `<figure>`       | `Figure`      |
+| `<figcaption>`   | `Figcaption`  |
+| `<g>`            | `G`           |
 
-### **Lista de Grupo de componentes de `styled-proper`**
+### **List of Component Groups in `styled-proper`**
 
-| **Grupo**        | **Componentes**                                                                                                                                                                                                                                                                                             |
+| **Group**        | **Component**                                                                                                                                                                                                                                                                                               |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Box**          | `Header`, `Nav`, `Main`, `Section`, `Article`, `Aside`, `Footer`, `Div`, `Span`, `Body`, `Ul`, `Ol`, `Li`                                                                                                                                                                                                   |
 | **Text**         | `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `P`, `A`, `Abbr`, `Addr`, `B`, `Bdi`, `Bdo`, `Blockquote`, `Cite`, `Code`, `Del`, `Dfn`, `Em`, `I`, `Ins`, `Kbd`, `Mark`, `S`, `Samp`, `Small`, `Strong`, `Sub`, `Sup`, `Time`, `U`, `Var`, `Big`, `Hgroup`, `Dl`, `Dt`, `Dd`, `Pre`, `Q`, `Rp`, `Rt`, `Ruby`           |
@@ -500,11 +636,11 @@ Por ejemplo:
 | **MetaElement**  | `Head`, `Title`, `Base`, `Link`, `Meta`, `Style`, `Script`, `Html`                                                                                                                                                                                                                                          |
 | **Misc**         | `Br`, `Hr`, `Wbr`, `Area`, `Map`, `Param`, `Menu`, `MenuItem`, `Noscript`, `Dialog`, `Data`, `Details`, `Summary`, `Figure`, `Figcaption`, `G`                                                                                                                                                              |
 
-### **Lista de Props disponibles `styled-proper`**
+### **List of Available Props in `styled-proper`**
 
 -   ### Layout props
 
-| **Propiedad**         | **Options**                             |
+| **Prop**              | **Options**                             |
 | --------------------- | --------------------------------------- |
 | `aspect`              | `auto` : 1 / 1                          |
 |                       | `square` : 1 / 1                        |
@@ -639,7 +775,7 @@ Por ejemplo:
 
 -   ### Flex and Grid props
 
-| **Propiedad**    | **Options**                           |
+| **Prop**         | **Options**                           |
 | ---------------- | ------------------------------------- |
 | `basis`          | `auto` : auto                         |
 |                  | [REM_OPTIONS](#rem-options)           |
@@ -795,78 +931,78 @@ Por ejemplo:
 
 -   ### Spacing props
 
-| **Propiedad** | **Options**                           |
-| ------------- | ------------------------------------- |
-| `p`           | [REM_OPTIONS](#rem-options)           |
-| `pt`          | [REM_OPTIONS](#rem-options)           |
-| `pr`          | [REM_OPTIONS](#rem-options)           |
-| `pb`          | [REM_OPTIONS](#rem-options)           |
-| `pl`          | [REM_OPTIONS](#rem-options)           |
-| `py`          | [REM_OPTIONS](#rem-options)           |
-| `px`          | [REM_OPTIONS](#rem-options)           |
-| `m`           | [REM_OPTIONS](#rem-options)           |
-| `mt`          | [REM_OPTIONS](#rem-options)           |
-| `mr`          | [REM_OPTIONS](#rem-options)           |
-| `mb`          | [REM_OPTIONS](#rem-options)           |
-| `ml`          | [REM_OPTIONS](#rem-options)           |
-| `my`          | [REM_OPTIONS](#rem-options)           |
-| `mx`          | [REM_OPTIONS](#rem-options)           |
-| `w`           | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `auto` : auto                         |
-|               | `full` : 100%                         |
-|               | `screen` : 100vw                      |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `fit` : fit-content                   |
-| `minW`        | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `px` : 1px                            |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `full` : 100%                         |
-|               | `fit` : fit-content                   |
-| `maxW`        | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `px` : 1px                            |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `full` : 100%                         |
-|               | `fit` : fit-content                   |
-| `h`           | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `auto` : auto                         |
-|               | `full` : 100%                         |
-|               | `screen` : 100vh                      |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `fit` : fit-content                   |
-| `minH`        | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `px` : 1px                            |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `full` : 100%                         |
-|               | `fit` : fit-content                   |
-| `maxH`        | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `px` : 1px                            |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `full` : 100%                         |
-|               | `fit` : fit-content                   |
-| `size`        | [REM_OPTIONS](#rem-options)           |
-|               | [FRACTION_OPTIONS](#fraction-options) |
-|               | `auto` : auto                         |
-|               | `full` : 100%                         |
-|               | `screen` : 100vw                      |
-|               | `min` : min-content                   |
-|               | `max` : max-content                   |
-|               | `fit` : fit-content                   |
+| **Prop** | **Options**                           |
+| -------- | ------------------------------------- |
+| `p`      | [REM_OPTIONS](#rem-options)           |
+| `pt`     | [REM_OPTIONS](#rem-options)           |
+| `pr`     | [REM_OPTIONS](#rem-options)           |
+| `pb`     | [REM_OPTIONS](#rem-options)           |
+| `pl`     | [REM_OPTIONS](#rem-options)           |
+| `py`     | [REM_OPTIONS](#rem-options)           |
+| `px`     | [REM_OPTIONS](#rem-options)           |
+| `m`      | [REM_OPTIONS](#rem-options)           |
+| `mt`     | [REM_OPTIONS](#rem-options)           |
+| `mr`     | [REM_OPTIONS](#rem-options)           |
+| `mb`     | [REM_OPTIONS](#rem-options)           |
+| `ml`     | [REM_OPTIONS](#rem-options)           |
+| `my`     | [REM_OPTIONS](#rem-options)           |
+| `mx`     | [REM_OPTIONS](#rem-options)           |
+| `w`      | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `auto` : auto                         |
+|          | `full` : 100%                         |
+|          | `screen` : 100vw                      |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `fit` : fit-content                   |
+| `minW`   | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `px` : 1px                            |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `full` : 100%                         |
+|          | `fit` : fit-content                   |
+| `maxW`   | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `px` : 1px                            |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `full` : 100%                         |
+|          | `fit` : fit-content                   |
+| `h`      | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `auto` : auto                         |
+|          | `full` : 100%                         |
+|          | `screen` : 100vh                      |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `fit` : fit-content                   |
+| `minH`   | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `px` : 1px                            |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `full` : 100%                         |
+|          | `fit` : fit-content                   |
+| `maxH`   | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `px` : 1px                            |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `full` : 100%                         |
+|          | `fit` : fit-content                   |
+| `size`   | [REM_OPTIONS](#rem-options)           |
+|          | [FRACTION_OPTIONS](#fraction-options) |
+|          | `auto` : auto                         |
+|          | `full` : 100%                         |
+|          | `screen` : 100vw                      |
+|          | `min` : min-content                   |
+|          | `max` : max-content                   |
+|          | `fit` : fit-content                   |
 
 -   ### Typography props
 
-| **Propiedad**             | **Options**                                                                                                                                |
+| **Prop**                  | **Options**                                                                                                                                |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `family`                  | `sans` : ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif |
 |                           | `serif` : ui-serif, Georgia, Cambria, "Times New Roman", Times, serif                                                                      |
@@ -1051,7 +1187,7 @@ Por ejemplo:
 
 -   ### Background props
 
-| **Propiedad**  | **Options**                     |
+| **Prop**       | **Options**                     |
 | -------------- | ------------------------------- |
 | `bg`           | [COLOR OPTIONS](#color-options) |
 | `bgAttachment` | `fixed` : fixed                 |
@@ -1100,7 +1236,7 @@ Por ejemplo:
 
 -   ### Border props
 
-| **Propiedad**       | **Options**                     |
+| **Prop**            | **Options**                     |
 | ------------------- | ------------------------------- |
 | `border`            |                                 |
 | `borderTop`         |                                 |
@@ -1138,7 +1274,7 @@ Por ejemplo:
 
 -   ### Shadow props
 
-| **Propiedad**  | **Options**                                |
+| **Prop**       | **Options**                                |
 | -------------- | ------------------------------------------ |
 | `boxShadow`    | `none` : none                              |
 |                | `light` : 0px 1px 3px rgba(0, 0, 0, 0.1)   |
@@ -1162,7 +1298,7 @@ Por ejemplo:
 
 -   ### Animation props
 
-| **Propiedad**             | **Options**                            |
+| **Prop**                  | **Options**                            |
 | ------------------------- | -------------------------------------- |
 | `animation`               |                                        |
 | `animationDelay`          |                                        |
@@ -1193,7 +1329,7 @@ Por ejemplo:
 
 -   ### Transition props
 
-| **Propiedad**              | **Options** |
+| **Prop**                   | **Options** |
 | -------------------------- | ----------- |
 | `transition`               |             |
 | `transitionDelay`          |             |
@@ -1203,7 +1339,7 @@ Por ejemplo:
 
 -   ### Transform props
 
-| **Propiedad**        | **Options** |
+| **Prop**             | **Options** |
 | -------------------- | ----------- |
 | `transform`          |             |
 | `transformOrigin`    |             |
@@ -1214,7 +1350,7 @@ Por ejemplo:
 
 -   ### Filter props
 
-| **Propiedad**    | **Options** |
+| **Prop**         | **Options** |
 | ---------------- | ----------- |
 | `filter`         |             |
 | `backdropFilter` |             |
@@ -1222,7 +1358,7 @@ Por ejemplo:
 
 -   ### Interaction props
 
-| **Propiedad**   | **Options** |
+| **Prop**        | **Options** |
 | --------------- | ----------- |
 | `cursor`        |             |
 | `userSelect`    |             |
@@ -1230,46 +1366,46 @@ Por ejemplo:
 
 -   ### Tables props
 
-| **Propiedad** | **Options** |
+| **Prop**      | **Options** |
 | ------------- | ----------- |
 | `tableLayout` |             |
 | `emptyCells`  |             |
 
 -   ### Visibility props
 
-| **Propiedad** | **Options** |
-| ------------- | ----------- |
-| `opacity`     |             |
-| `visibility`  |             |
-| `resize`      |             |
+| **Prop**     | **Options** |
+| ------------ | ----------- |
+| `opacity`    |             |
+| `visibility` |             |
+| `resize`     |             |
 
 -   ### Clip mask props
 
-| **Propiedad** | **Options** |
-| ------------- | ----------- |
-| `clip`        |             |
-| `clipPath`    |             |
-| `mask`        |             |
-| `maskType`    |             |
-| `caretColor`  |             |
+| **Prop**     | **Options** |
+| ------------ | ----------- |
+| `clip`       |             |
+| `clipPath`   |             |
+| `mask`       |             |
+| `maskType`   |             |
+| `caretColor` |             |
 
 -   ### Direction quote props
 
-| **Propiedad** | **Options** |
-| ------------- | ----------- |
-| `direction`   |             |
-| `quotes`      |             |
+| **Prop**    | **Options** |
+| ----------- | ----------- |
+| `direction` |             |
+| `quotes`    |             |
 
 -   ### Counters props
 
-| **Propiedad**      | **Options** |
+| **Prop**           | **Options** |
 | ------------------ | ----------- |
 | `counterIncrement` |             |
 | `counterReset`     |             |
 
 -   ### Scroll props
 
-| **Propiedad**     | **Options** |
+| **Prop**          | **Options** |
 | ----------------- | ----------- |
 | `scrollBehavior`  |             |
 | `scrollSnapAlign` |             |
@@ -1278,7 +1414,7 @@ Por ejemplo:
 
 -   ### Shape props
 
-| **Propiedad**         | **Options** |
+| **Prop**              | **Options** |
 | --------------------- | ----------- |
 | `shapeImageThreshold` |             |
 | `shapeMargin`         |             |
@@ -1286,18 +1422,18 @@ Por ejemplo:
 
 -   ### Rendering props
 
-| **Propiedad**    | **Options** |
+| **Prop**         | **Options** |
 | ---------------- | ----------- |
 | `imageRendering` |             |
 
 -   ### Other props
 
-| **Propiedad** | **Options** |
-| ------------- | ----------- |
-| `willChange`  |             |
-| `uBidi`       |             |
-| `orphans`     |             |
-| `widows`      |             |
+| **Prop**     | **Options** |
+| ------------ | ----------- |
+| `willChange` |             |
+| `uBidi`      |             |
+| `orphans`    |             |
+| `widows`     |             |
 
 # REM OPTIONS, FRACTION OPTIONS and COLOR OPTIONS
 
@@ -1587,10 +1723,18 @@ Por ejemplo:
 | `info-800`       | <span style="display:block;width:100px; height:20px; background-color:#001e40; border-radius: 5px"></span> |
 | `info-900`       | <span style="display:block;width:100px; height:20px; background-color:#000b20; border-radius: 5px"></span> |
 
-## Contribuciones
+## Web Site
 
-Si deseas contribuir al proyecto, siéntete libre de crear un _pull request_ o abrir un _issue_ en el repositorio.
+The website for this project is still under construction. It will be available soon!
 
-## Licencia
+## Issues
 
-Este proyecto está licenciado bajo la licencia MIT.
+If you find any issues, missing properties or functionalities, or have any suggestions, please open an issue in the repository. Your input is very valuable and will help improve the project!
+
+## Contributing
+
+If you would like to contribute to the project, feel free to create a _pull request_ or open an _issue_ in the repository.
+
+## License
+
+This project is licensed under the MIT License.
