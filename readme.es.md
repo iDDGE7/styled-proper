@@ -1,5 +1,4 @@
 # styled-proper
-[English version](README.md)
 
 `styled-proper` es una biblioteca construida sobre `styled-components` que permite agregar estilos dinámicos a componentes mediante props. Ofrece soporte para media queries, manejo de pseudo-clases, pseudo-elementos y brinda la flexibilidad de extender componentes aprovechando las características robustas de `styled-components`.
 
