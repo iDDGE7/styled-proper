@@ -160,7 +160,7 @@ function getStyles(props: object): Record<string, string | number> {
         return acc;
     }, {});
 
-    return { ...propStyles, ...pseudoStyles };
+    return mergeObjectDeep(propStyles, pseudoStyles);
 }
 
 const styled = (c: keyof JSX.IntrinsicElements | React.ComponentType<any>) => st(c).withConfig({ shouldForwardProp });
