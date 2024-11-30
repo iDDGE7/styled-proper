@@ -35,12 +35,14 @@
     },
     "keywords": [
         "styled-components",
-        "styled-system",
         "css-in-js",
         "pseudo-classes",
         "react",
         "library",
-        "dynamic-styling"
+        "dynamic-styling",
+        "frontend",
+        "javascript",
+        "css"
     ],
     "author": "Edgar de Dios eduardoddg60@gmail.com",
     "license": "MIT",
